@@ -8,13 +8,18 @@ class Color:
         self.a: float = a
 
     @property
-    def rgba(self):
+    def rgba(self) -> (float, float, float, float):
         return self.r, self.g, self.b, self.a
 
+    @property
+    def html_rgba(self) -> str:
+        return self.color32.html_rgba
+
+    @property
     def color32(self):
         return Color32(self.r * 255, self.g * 255, self.b * 255, self.a * 255)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return r"{Color r: %f, g: %f, b: %f, a: %f}" % (self.r, self.g, self.b,
                                                         self.a)
 
@@ -23,21 +28,24 @@ class Color32:
     """Color32 RGBA(0-255)"""
 
     def __init__(self, r: int = 255, g: int = 255, b: int = 255, a: int = 255):
-        self.r: int = r
-        self.g: int = g
-        self.b: int = b
-        self.a: int = a
+        self.r: int = round(r)
+        self.g: int = round(g)
+        self.b: int = round(b)
+        self.a: int = round(a)
 
     @property
-    def rgba(self):
+    def rgba(self) -> (int, int, int, int):
         return self.r, self.g, self.b, self.a
 
     @property
-    def color(self):
-        return Color(self.r / 255, self.g / 255, self.b / 255,
-                     self.a / 255)
+    def html_rgba(self) -> str:
+        return '#%02X%02X%02X%02X' % (self.r, self.g, self.b, self.a)
 
-    def __str__(self):
+    @property
+    def color(self) -> Color:
+        return Color(self.r / 255, self.g / 255, self.b / 255, self.a / 255)
+
+    def __str__(self) -> str:
         return r"{Color32 r: %d, g: %d, b: %d, a: %d}" % (self.r, self.g,
                                                           self.b, self.a)
 
@@ -95,11 +103,3 @@ def parse_color(str_color: str) -> Color:
     #RGBA #RRGGBBAA
     """
     return parse_color32(str_color).color
-
-
-# test
-# print(_split3('RGB'))
-# print(_split3('RRGGBB'))
-# print(_split4('RGBA'))
-# print(_split4('RRGGBBAA'))
-# print(parse_color('FFCCDD'))
