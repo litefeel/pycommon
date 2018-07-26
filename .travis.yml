@@ -1,8 +1,15 @@
 language: python
+dist: xenial
+sudo: true
 python:
   - "3.6"
   - "3.7"
-  - "3.8-dev"
+  - "nightly"
+
+matrix:
+  allow_failures:
+  - python: "nightly"
+  
 # command to install dependencies
 install:
   # - pip install -r requirements.txt
