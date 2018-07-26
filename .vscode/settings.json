@@ -1,13 +1,17 @@
 {
     "python.formatting.provider": "yapf",
-    "python.unitTest.unittestArgs": [
-        "-v",
-        "-s",
-        "./test",
-        "-p",
-        "*_test.py"
+    "python.unitTest.pyTestArgs": [
+        "."
     ],
-    "python.unitTest.pyTestEnabled": false,
+    "python.unitTest.unittestEnabled": false,
     "python.unitTest.nosetestsEnabled": false,
-    "python.unitTest.unittestEnabled": true,
+    "python.unitTest.pyTestEnabled": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/__pycache__": true
+    },
 }
