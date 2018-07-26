@@ -29,5 +29,5 @@ setup(
         'Programming Language :: Python :: 3',
     ],
     packages=find_packages(),
-    python_requires='>=3'
+    python_requires='>=3.6'
     )
