@@ -3,6 +3,7 @@
 import codecs
 import locale
 import os
+import shutil
 import sys
 
 
@@ -27,6 +28,10 @@ def read_file(filename, isbin=False, encoding='utf-8'):
     mode = 'rb' if isbin else 'r'
     with open(filename, mode=mode, encoding=encoding) as f:
         return f.read()
+
+def copy_file(src, dst):
+    makedirs(dst, True)
+    shutil.copyfile(src, dst)
 
 
 def _correct_print(isstdout):
