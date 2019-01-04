@@ -1,3 +1,6 @@
+from typing import Tuple
+
+
 class Color:
     """Color RGBA(0-1)"""
 
@@ -8,7 +11,7 @@ class Color:
         self.a: float = a
 
     @property
-    def rgba(self) -> (float, float, float, float):
+    def rgba(self) -> Tuple[float, float, float, float]:
         return self.r, self.g, self.b, self.a
 
     @property
@@ -20,8 +23,7 @@ class Color:
         return Color32(self.r * 255, self.g * 255, self.b * 255, self.a * 255)
 
     def __str__(self) -> str:
-        return r"{Color r: %f, g: %f, b: %f, a: %f}" % (self.r, self.g, self.b,
-                                                        self.a)
+        return r"{Color r: %f, g: %f, b: %f, a: %f}" % (self.r, self.g, self.b, self.a)
 
 
 class Color32:
@@ -34,20 +36,24 @@ class Color32:
         self.a: int = round(a)
 
     @property
-    def rgba(self) -> (int, int, int, int):
+    def rgba(self) -> Tuple[int, int, int, int]:
         return self.r, self.g, self.b, self.a
 
     @property
     def html_rgba(self) -> str:
-        return '#%02X%02X%02X%02X' % (self.r, self.g, self.b, self.a)
+        return "#%02X%02X%02X%02X" % (self.r, self.g, self.b, self.a)
 
     @property
     def color(self) -> Color:
         return Color(self.r / 255, self.g / 255, self.b / 255, self.a / 255)
 
     def __str__(self) -> str:
-        return r"{Color32 r: %d, g: %d, b: %d, a: %d}" % (self.r, self.g,
-                                                          self.b, self.a)
+        return r"{Color32 r: %d, g: %d, b: %d, a: %d}" % (
+            self.r,
+            self.g,
+            self.b,
+            self.a,
+        )
 
 
 def _hex(s: str) -> int:
@@ -56,29 +62,29 @@ def _hex(s: str) -> int:
     return int(s, 16)
 
 
-def _split3(s: str) -> (int, int, int):
+def _split3(s: str) -> Tuple[str, str, str]:
     per: int = len(s) // 3
-    return s[0:per], s[per:per * 2], s[per * 2:]
+    return s[0:per], s[per : per * 2], s[per * 2 :]
 
 
-def _split4(s: str) -> (int, int, int, int):
+def _split4(s: str) -> Tuple[str, str, str, str]:
     per: int = len(s) // 4
-    return s[0:per], s[per:per * 2], s[per * 2:per * 3], s[per * 3:]
+    return s[0:per], s[per : per * 2], s[per * 2 : per * 3], s[per * 3 :]
 
 
-def parse_hex_color(s: str) -> (int, int, int, int):
+def parse_hex_color(s: str) -> Tuple[int, int, int, int]:
     """ #RGBA #RGB RGBA RGB or dubule """
 
-    str_color: str = s[1:] if s.startswith('#') else s
+    str_color: str = s[1:] if s.startswith("#") else s
 
     length = len(str_color)
-    sr, sg, sb, sa = 'FF', 'FF', 'FF', 'FF'
-    if (6 == length or 3 == length):
+    sr, sg, sb, sa = "FF", "FF", "FF", "FF"
+    if 6 == length or 3 == length:
         sr, sg, sb = _split3(str_color)
     elif 4 == length or 8 == length:
         sr, sg, sb, sa = _split4(str_color)
     else:
-        assert False, 'incorrect format for colr:%s' % str_color
+        assert False, "incorrect format for colr:%s" % str_color
     return _hex(sr), _hex(sg), _hex(sb), _hex(sa)
 
 
