@@ -19,6 +19,8 @@ def write_file(filename, data, mode=None, encoding='utf-8'):
     makedirs(filename, isfile=True)
     if not mode:
         mode = 'w' if isinstance(data, str) else 'wb'
+    if isinstance(data, (bytearray, bytes)):
+        encoding = None
     with open(filename, mode=mode, encoding=encoding) as f:
         f.write(data)
 
