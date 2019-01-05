@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="litefeel-pycommon",
-    version="0.3.0",
+    version="0.3.1",
     description="my python common lib",
     author="litefeel",
     author_email="litefeel@gmail.com",
@@ -25,6 +25,6 @@ setup(
         # that you indicate whether you support Python 2, Python 3 or both.
         "Programming Language :: Python :: 3",
     ],
-    packages=find_packages(exclude=("test",)),
+    packages=find_packages(exclude=["test"]),
     python_requires=">=3.6",
 )
