@@ -14,14 +14,15 @@ def makedirs(filename, isfile=False):
         os.makedirs(dirname)
 
 
-def write_file(filename, data, mode=None, encoding="utf-8"):
+def write_file(filename, data, mode=None, encoding="utf-8", newline=None):
     "save data to file"
     makedirs(filename, isfile=True)
     if not mode:
         mode = "w" if isinstance(data, str) else "wb"
     if isinstance(data, (bytearray, bytes)):
         encoding = None
-    with open(filename, mode=mode, encoding=encoding) as f:
+        newline = None
+    with open(filename, mode=mode, encoding=encoding, newline=newline) as f:
         f.write(data)
 
 
@@ -38,8 +39,7 @@ def copy_file(src, dst):
 
 
 def _correct_print(isstdout):
-    """correct
-    """
+    """correct"""
     stream = sys.stdout if isstdout else sys.stderr
     if stream.encoding.upper() != "UTF-8":
         encoding = stream.encoding or locale.getpreferredencoding()
@@ -64,4 +64,3 @@ def correct_print(stdout=True, stderr=True):
         _correct_print(True)
     if stderr:
         _correct_print(False)
-
