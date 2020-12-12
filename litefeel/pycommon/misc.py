@@ -1,26 +1,28 @@
 "some function for misc"
 
 
-from typing import Callable, Iterable
+from typing import Any, Callable, Iterable
 
 
-def every(iterable: Iterable, call: Callable = None) -> bool:
-    if call is None:
+def every(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
+    """like all(iterable), can accept an test function"""
+    if func is None:
         return all(iterable)
 
     for it in iterable:
-        if not call(it):
+        if not func(it):
             return False
 
     return True
 
 
-def some(iterable: Iterable, call: Callable = None) -> bool:
-    if call is None:
+def some(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
+    """like any(iterable), can accept an test function"""
+    if func is None:
         return any(iterable)
 
     for it in iterable:
-        if call(it):
+        if func(it):
             return True
 
     return False
