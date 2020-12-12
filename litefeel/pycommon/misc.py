@@ -3,11 +3,14 @@
 
 from typing import Any, Callable, Iterable
 
+_all = all
+_any = any
 
-def every(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
-    """like all(iterable), can accept an test function"""
+
+def all(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
+    """like buildin all(iterable), can accept an test function"""
     if func is None:
-        return all(iterable)
+        return _all(iterable)
 
     for it in iterable:
         if not func(it):
@@ -16,10 +19,10 @@ def every(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
     return True
 
 
-def some(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
-    """like any(iterable), can accept an test function"""
+def any(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
+    """like buildin any(iterable), can accept an test function"""
     if func is None:
-        return any(iterable)
+        return _any(iterable)
 
     for it in iterable:
         if func(it):
