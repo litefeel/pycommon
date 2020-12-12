@@ -1,10 +1,7 @@
 "some function for io"
 
-import codecs
-import locale
 import os
 import shutil
-import sys
 
 
 def makedirs(filename, isfile=False):
@@ -36,31 +33,3 @@ def read_file(filename, isbin=False, encoding="utf-8"):
 def copy_file(src, dst):
     makedirs(dst, True)
     shutil.copyfile(src, dst)
-
-
-def _correct_print(isstdout):
-    """correct"""
-    stream = sys.stdout if isstdout else sys.stderr
-    if stream.encoding.upper() != "UTF-8":
-        encoding = stream.encoding or locale.getpreferredencoding()
-        try:
-            encoder = codecs.getwriter(encoding)
-        except LookupError:
-            encoder = codecs.getwriter("UTF-8")
-        try:
-            newstream = encoder(stream.buffer, "xmlcharrefreplace")
-        except AttributeError:
-            newstream = encoder(stream, "xmlcharrefreplace")
-        if isstdout:
-            sys.stdout = newstream
-        else:
-            sys.stderr = newstream
-
-
-# correct print
-# must call in app start
-def correct_print(stdout=True, stderr=True):
-    if stdout:
-        _correct_print(True)
-    if stderr:
-        _correct_print(False)

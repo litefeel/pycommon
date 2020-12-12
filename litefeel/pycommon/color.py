@@ -1,5 +1,7 @@
 from typing import Tuple
 
+from .math import round
+
 
 class Color:
     """Color RGBA(0-1)"""
@@ -20,7 +22,12 @@ class Color:
 
     @property
     def color32(self):
-        return Color32(self.r * 255, self.g * 255, self.b * 255, self.a * 255)
+        return Color32(
+            round(self.r * 255),
+            round(self.g * 255),
+            round(self.b * 255),
+            round(self.a * 255),
+        )
 
     def __str__(self) -> str:
         return r"{Color r: %f, g: %f, b: %f, a: %f}" % (self.r, self.g, self.b, self.a)
@@ -89,7 +96,7 @@ def parse_hex_color(s: str) -> Tuple[int, int, int, int]:
 
 
 def parse_color32(str_color: str) -> Color32:
-    """ Parse hex color to Color32, the default alpha is FF
+    """Parse hex color to Color32, the default alpha is FF
     format:
     RGB RRGGBB
     RGBA RRGGBBAA
@@ -101,7 +108,7 @@ def parse_color32(str_color: str) -> Color32:
 
 
 def parse_color(str_color: str) -> Color:
-    """ Parse hex color to Color, the default alpha is FF
+    """Parse hex color to Color, the default alpha is FF
     format:
     RGB RRGGBB
     RGBA RRGGBBAA
