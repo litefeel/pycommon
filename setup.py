@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="litefeel-pycommon",
-    version="0.4.1",
+    version="0.4.2",
     description="my python common lib",
     author="litefeel",
     author_email="litefeel@gmail.com",
