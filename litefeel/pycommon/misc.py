@@ -1,7 +1,8 @@
 "some function for misc"
 
 
-from typing import Any, Callable, Iterable
+from datetime import datetime
+from typing import Any, Callable, Iterable, Union
 
 _all = all
 _any = any
@@ -29,3 +30,28 @@ def any(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
             return True
 
     return False
+
+
+def parse_datetime(timestr: Union[str, datetime]) -> datetime:
+    """
+    parse str to datatime
+
+    support format:
+    - 2021-12-27 10:31:30
+    - 2021/12/27 10:31:30
+    - 2021/12/27 03:31
+    - 2021/12/27 3:31
+    """
+    if isinstance(timestr, datetime):
+        return timestr
+
+    assert isinstance(
+        timestr, str
+    ), f"Type Error timestr must be str or datetime, timestr:{type(timestr)}"
+
+    timearr = timestr.replace("-", " ").replace("/", " ").replace(":", " ").split(" ")
+    assert len(timearr) == 5 or len(timearr) == 6
+    timearr = list([int(n) for n in timearr])
+    if len(timearr) == 5:
+        timearr.append(0)
+    return datetime(*timearr)
