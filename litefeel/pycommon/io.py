@@ -29,11 +29,25 @@ def read_file(filename, isbin=False, encoding="utf-8"):
     with open(filename, mode=mode, encoding=encoding) as f:
         return f.read()
 
+
 def read_lines(filename, encoding="utf-8"):
     "read lines from file"
     with open(filename, mode="r", encoding=encoding) as f:
         return f.readlines()
 
+
 def copy_file(src, dst):
     makedirs(dst, True)
     shutil.copyfile(src, dst)
+
+
+def check_encoding(filename: str, *encodings: str):
+    "check encoding on file"
+    for encoding in encodings:
+        with open(filename, mode="r", encoding=encoding) as f:
+            try:
+                f.read()
+                return encoding
+            except UnicodeDecodeError:
+                pass
+    return None
