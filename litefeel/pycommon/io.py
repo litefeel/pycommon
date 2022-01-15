@@ -30,10 +30,13 @@ def read_file(filename, isbin=False, encoding="utf-8"):
         return f.read()
 
 
-def read_lines(filename, encoding="utf-8"):
+def read_lines(filename, encoding="utf-8", keepends=False):
     "read lines from file"
     with open(filename, mode="r", encoding=encoding) as f:
-        return f.readlines()
+        if keepends:
+            return f.readlines()
+        else:
+            return f.read().splitlines(keepends)
 
 
 def copy_file(src, dst):
