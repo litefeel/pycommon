@@ -11,11 +11,13 @@ def makedirs(filename, isfile=False):
         os.makedirs(dirname)
 
 
-def write_file(filename, data, mode=None, encoding="utf-8", newline=None):
+def write_file(filename, data, mode=None, encoding="utf-8", newline=None, append=False):
     "save data to file"
     makedirs(filename, isfile=True)
     if not mode:
         mode = "w" if isinstance(data, str) else "wb"
+    if append:
+        mode = mode.replace("w", "a")
     if isinstance(data, (bytearray, bytes)):
         encoding = None
         newline = None
@@ -31,10 +33,16 @@ def read_file(filename, isbin=False, encoding="utf-8"):
 
 
 def write_lines(
-    filename, lines: list[str], encoding="utf-8", newline="\n", newlineinlines=False
+    filename,
+    lines: list[str],
+    encoding="utf-8",
+    newline="\n",
+    newlineinlines=False,
+    append=False,
 ):
     "save lines to file"
-    with open(filename, mode="wt", encoding=encoding) as f:
+    mode = "at" if append else "wt"
+    with open(filename, mode=mode, encoding=encoding) as f:
         if newlineinlines:
             f.writelines(lines)
         else:
