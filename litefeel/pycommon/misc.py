@@ -51,7 +51,7 @@ def parse_datetime(timestr: Union[str, datetime]) -> datetime:
 
     timearr = timestr.replace("-", " ").replace("/", " ").replace(":", " ").split(" ")
     assert len(timearr) == 5 or len(timearr) == 6
-    timearr = list([int(n) for n in timearr])
-    if len(timearr) == 5:
-        timearr.append(0)
-    return datetime(*timearr)
+    timeintarr: list[Any] = list([int(n) for n in timearr])
+    if len(timeintarr) == 5:
+        timeintarr.append(0)
+    return datetime(*timeintarr)
