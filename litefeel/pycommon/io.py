@@ -30,10 +30,17 @@ def read_file(filename, isbin=False, encoding="utf-8"):
         return f.read()
 
 
-def write_lines(filename, lines:list[str], encoding="utf-8", newline=None):
+def write_lines(
+    filename, lines: list[str], encoding="utf-8", newline="\n", newlineinlines=False
+):
     "save lines to file"
-    with open(filename, mode="wt", encoding=encoding, newline=newline) as f:
-        return f.writelines(lines)
+    with open(filename, mode="wt", encoding=encoding) as f:
+        if newlineinlines:
+            f.writelines(lines)
+        else:
+            for line in lines:
+                f.write(line)
+                f.write(newline)
 
 
 def read_lines(filename, encoding="utf-8", keepends=False):
