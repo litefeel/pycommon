@@ -14,7 +14,12 @@ def save_csv(filename, rows: list[list], header: list = None):
 def save_xlsx(
     filename: str, rows: list[list], header: list = None, images: list[tuple[str, str]] = None
 ):
-    """Save data to xlsx file.
+    """Save data to xlsx file. 注意图片不能设置为嵌入单元格图片。
+    如需设置嵌入单元格图片，则执行以下步骤:
+    1. 打开Excel
+    2. 选中任意一张图片
+    3. Ctrl+A 选中所有图片
+    4. 右键选择嵌入单元格图片
 
     Args:
         filename (str): filename
