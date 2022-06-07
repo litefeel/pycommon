@@ -1,6 +1,7 @@
-from datetime import datetime
 import ftplib
 import os
+from datetime import datetime
+from typing import List,Tuple
 
 
 def _get_fftp_files(
@@ -59,7 +60,7 @@ class FTP:
     def close(self):
         self._ftp.close()
 
-    def list_all(self, path: str) -> tuple[list, list, list]:
+    def list_all(self, path: str) -> Tuple[list, list, list]:
         files: list = []
         dirs: list = []
         file_dates: list = []

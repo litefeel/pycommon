@@ -2,7 +2,7 @@
 
 
 from datetime import datetime
-from typing import Any, Callable, Iterable, Union
+from typing import Any, Callable, Iterable, List, Union
 
 _all = all
 _any = any
@@ -51,7 +51,7 @@ def parse_datetime(timestr: Union[str, datetime]) -> datetime:
 
     timearr = timestr.replace("-", " ").replace("/", " ").replace(":", " ").split(" ")
     assert len(timearr) == 5 or len(timearr) == 6
-    timeintarr: list[Any] = list([int(n) for n in timearr])
+    timeintarr: List[Any] = list([int(n) for n in timearr])
     if len(timeintarr) == 5:
         timeintarr.append(0)
     return datetime(*timeintarr)

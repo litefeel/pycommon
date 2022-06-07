@@ -1,11 +1,10 @@
 import shlex
 import subprocess
 import sys
-from tkinter.messagebox import RETRY
-from typing import Iterable
+from typing import Iterable, Tuple
 
 
-def call_binary(cmd: str) -> tuple[bytes, bool]:
+def call_binary(cmd: str) -> Tuple[bytes, bool]:
     if sys.platform == "win32":
         args = cmd
     else:
@@ -25,7 +24,7 @@ def call_binary(cmd: str) -> tuple[bytes, bool]:
 # return (output, isOk)
 def call(
     cmd: str, printOutput: bool = False, encoding: None | str | Iterable[str] = None
-) -> tuple[str, bool]:
+) -> Tuple[str, bool]:
     data, isOk = call_binary(cmd)
     if not isOk:
         return "", False

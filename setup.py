@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="litefeel-pycommon",
-    version="0.4.12",
+    version="0.4.13",
     description="my python common lib",
     author="litefeel",
     author_email="litefeel@gmail.com",
@@ -27,5 +27,5 @@ setup(
     ],
     install_requires=["openpyxl"],
     packages=find_packages(exclude=["test"]),
-    python_requires=">=3.9",
+    python_requires=">=3.8",
 )

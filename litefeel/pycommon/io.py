@@ -2,6 +2,7 @@
 
 import os
 import shutil
+from typing import List
 
 
 def makedirs(filename, isfile=False):
@@ -34,7 +35,7 @@ def read_file(filename, isbin=False, encoding="utf-8"):
 
 def write_lines(
     filename,
-    lines: list[str],
+    lines: List[str],
     encoding="utf-8",
     newline="\n",
     newlineinlines=False,
