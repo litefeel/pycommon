@@ -1,7 +1,7 @@
 import shlex
 import subprocess
 import sys
-from typing import Iterable, Tuple
+from typing import Iterable, Tuple, Union
 
 
 def call_binary(cmd: str) -> Tuple[bytes, bool]:
@@ -23,7 +23,7 @@ def call_binary(cmd: str) -> Tuple[bytes, bool]:
 
 # return (output, isOk)
 def call(
-    cmd: str, printOutput: bool = False, encoding: None | str | Iterable[str] = None
+    cmd: str, printOutput: bool = False, encoding: Union[None, str, Iterable[str]] = None
 ) -> Tuple[str, bool]:
     data, isOk = call_binary(cmd)
     if not isOk:
