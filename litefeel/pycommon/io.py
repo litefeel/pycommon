@@ -29,6 +29,8 @@ def write_file(filename, data, mode=None, encoding="utf-8", newline=None, append
 def read_file(filename, isbin=False, encoding="utf-8"):
     "read data from file"
     mode = "rb" if isbin else "r"
+    if isbin:
+        encoding = None
     with open(filename, mode=mode, encoding=encoding) as f:
         return f.read()
 
