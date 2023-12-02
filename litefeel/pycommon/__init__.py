@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
 
 'version'
-__version__ = '0.4.15'
+
+import importlib.metadata
+
+__version__ = importlib.metadata.version('litefeel-pycommon')
