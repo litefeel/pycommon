@@ -12,6 +12,13 @@ def save_csv(filename, rows: List[List], header: List = None):
         for row in rows:
             writer.writerow(row)
 
+def read_xlsx(filename: str) -> List[List]:
+    wb = openpyxl.load_workbook(filename)
+    ws = wb.active
+    rows = []
+    for row in ws.rows:
+        rows.append([cell.value for cell in row])
+    return rows
 
 def save_xlsx(
     filename: str, rows: List[List], header: List = None, images: List[Tuple[str, str]] = None

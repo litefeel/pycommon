@@ -35,23 +35,17 @@ def read_file(filename, isbin=False, encoding="utf-8"):
         return f.read()
 
 
-def write_lines(
-    filename,
-    lines: List[str],
-    encoding="utf-8",
-    newline="\n",
-    newlineinlines=False,
-    append=False,
-):
+def write_lines(filename, lines: list[str], encoding="utf-8", newline=None, newlineinlines=False, append=False):
     "save lines to file"
     mode = "at" if append else "wt"
-    with open(filename, mode=mode, encoding=encoding) as f:
+    makedirs(filename, isfile=True)
+    with open(filename, mode=mode, encoding=encoding, newline=newline) as f:
         if newlineinlines:
             f.writelines(lines)
         else:
             for line in lines:
                 f.write(line)
-                f.write(newline)
+                f.write("\n")
 
 
 def read_lines(filename, encoding="utf-8", keepends=False):
