@@ -11,7 +11,7 @@ version = "0.4.17"
 dependencies = [
   "openpyxl",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [
   {name = "litefeel", email = "litefeel@gmail.com"},
 ]
