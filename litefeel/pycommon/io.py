@@ -2,7 +2,7 @@
 
 import os
 import shutil
-from typing import List
+from typing import Iterable, List
 
 
 def makedirs(filename, isfile=False):
@@ -35,7 +35,7 @@ def read_file(filename, isbin=False, encoding="utf-8"):
         return f.read()
 
 
-def write_lines(filename, lines: list[str], encoding="utf-8", newline=None, newlineinlines=False, append=False):
+def write_lines(filename, lines: Iterable[str], encoding="utf-8", newline=None, newlineinlines=False, append=False):
     "save lines to file"
     mode = "at" if append else "wt"
     makedirs(filename, isfile=True)
