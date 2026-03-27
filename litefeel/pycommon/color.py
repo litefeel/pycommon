@@ -80,7 +80,7 @@ def _split4(s: str) -> Tuple[str, str, str, str]:
 
 
 def parse_hex_color(s: str) -> Tuple[int, int, int, int]:
-    """ #RGBA #RGB RGBA RGB or dubule """
+    """Parse hex color strings in RGB/RGBA shorthand or full-length forms."""
 
     str_color: str = s[1:] if s.startswith("#") else s
 
@@ -91,7 +91,7 @@ def parse_hex_color(s: str) -> Tuple[int, int, int, int]:
     elif 4 == length or 8 == length:
         sr, sg, sb, sa = _split4(str_color)
     else:
-        assert False, "incorrect format for colr:%s" % str_color
+        raise ValueError(f"incorrect format for color: {str_color}")
     return _hex(sr), _hex(sg), _hex(sb), _hex(sa)
 
 
