@@ -9,4 +9,4 @@ def test_resolve_version_falls_back_to_local_pyproject(monkeypatch):
 
     monkeypatch.setattr(importlib.metadata, "version", raise_package_not_found)
 
-    assert pycommon._resolve_version() == "0.4.17"
+    assert pycommon._resolve_version() == "0.4.18"
