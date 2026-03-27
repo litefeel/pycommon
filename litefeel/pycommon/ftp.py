@@ -1,7 +1,7 @@
 import ftplib
 import os
 from datetime import datetime
-from typing import List,Tuple
+from typing import Tuple
 
 
 def _get_fftp_files(
@@ -80,9 +80,9 @@ class FTP:
 
         assert remote_path.startswith("/")
 
-        remote_files, remote_dirs, _ = (set(x) for x in self.list_all(remote_path))
+        _makedirs(self._ftp, remote_path, set())
 
-        _makedirs(self._ftp, remote_path, remote_dirs)
+        remote_files, _, _ = (set(x) for x in self.list_all(remote_path))
         self._ftp.cwd(remote_path)
 
         for root, dirs, files in os.walk(local_path):
