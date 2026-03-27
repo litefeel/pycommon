@@ -3,7 +3,7 @@
 'version'
 
 import importlib.metadata
-import re
+import tomllib
 from pathlib import Path
 
 
@@ -12,9 +12,14 @@ def _read_local_version() -> str | None:
     if not pyproject.is_file():
         return None
 
-    match = re.search(r'^version\s*=\s*"([^"]+)"\s*$', pyproject.read_text(encoding="utf-8"), re.MULTILINE)
-    if match:
-        return match.group(1)
+    with pyproject.open("rb") as f:
+        data = tomllib.load(f)
+
+    project = data.get("project")
+    if isinstance(project, dict):
+        version = project.get("version")
+        if isinstance(version, str):
+            return version
     return None
 
 
