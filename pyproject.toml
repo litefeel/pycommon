@@ -15,7 +15,7 @@ requires-python = ">=3.11"
 authors = [
   {name = "litefeel", email = "litefeel@gmail.com"},
 ]
-description = "my python common lib"
+description = "Common Python utilities for file I/O, color parsing, hashing, FTP, and spreadsheet helpers"
 readme = "README.md"
 license = {file = "LICENSE"}
 keywords = ["lib"]
@@ -32,7 +32,7 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/litefeel/pycommon"
-Repository = "https://github.com/litefeel/pycommon.git"
+Repository = "https://github.com/litefeel/pycommon"
 "Bug Tracker" = "https://github.com/litefeel/pycommon/issues"
 
 
