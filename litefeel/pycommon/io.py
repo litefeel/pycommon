@@ -2,7 +2,7 @@
 
 import os
 import shutil
-from typing import Iterable, List
+from collections.abc import Iterable
 
 
 def makedirs(filename, isfile=False):

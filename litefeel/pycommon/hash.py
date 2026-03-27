@@ -1,5 +1,5 @@
 import hashlib
-from typing import Callable
+from collections.abc import Callable
 
 
 def file_sha1(filename: str) -> str:
@@ -14,7 +14,7 @@ def file_md5(filename: str) -> str:
     return md5.hexdigest()
 
 
-def _update(filename: str, func: Callable[[bytes], None]):
+def _update(filename: str, func: Callable[[bytes], None]) -> None:
     with open(filename, mode="rb") as f:
         while True:
             data = f.read(65536)

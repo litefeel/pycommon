@@ -1,10 +1,9 @@
 import csv
-from typing import List, Tuple
 
 import openpyxl
 
 
-def save_csv(filename, rows: List[List], header: List = None):
+def save_csv(filename, rows: list[list], header: list | None = None):
     with open(filename, "w", newline="") as f:
         writer = csv.writer(f)
         if header:
@@ -12,7 +11,7 @@ def save_csv(filename, rows: List[List], header: List = None):
         for row in rows:
             writer.writerow(row)
 
-def read_xlsx(filename: str) -> List[List]:
+def read_xlsx(filename: str) -> list[list]:
     wb = openpyxl.load_workbook(filename)
     ws = wb.active
     rows = []
@@ -21,7 +20,10 @@ def read_xlsx(filename: str) -> List[List]:
     return rows
 
 def save_xlsx(
-    filename: str, rows: List[List], header: List = None, images: List[Tuple[str, str]] = None
+    filename: str,
+    rows: list[list],
+    header: list | None = None,
+    images: list[tuple[str, str]] | None = None,
 ):
     """Save data to xlsx file. 注意图片不能设置为嵌入单元格图片。
     如需设置嵌入单元格图片，则执行以下步骤:

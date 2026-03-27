@@ -1,11 +1,10 @@
 import ftplib
 import os
 from datetime import datetime
-from typing import Tuple
 
 
 def _get_fftp_files(
-    ftp: ftplib.FTP, path: str, files: list, dirs: list, file_dates: list
+    ftp: ftplib.FTP, path: str, files: list[str], dirs: list[str], file_dates: list[datetime]
 ):
 
     lst: list = []
@@ -28,7 +27,7 @@ def _get_fftp_files(
             file_dates.append(date)
 
 
-def _makedirs(ftp: ftplib.FTP, path: str, remote_dirs: set):
+def _makedirs(ftp: ftplib.FTP, path: str, remote_dirs: set[str]):
     assert path.startswith("/")
     if path in remote_dirs:
         return
@@ -60,10 +59,10 @@ class FTP:
     def close(self):
         self._ftp.close()
 
-    def list_all(self, path: str) -> Tuple[list, list, list]:
-        files: list = []
-        dirs: list = []
-        file_dates: list = []
+    def list_all(self, path: str) -> tuple[list[str], list[str], list[datetime]]:
+        files: list[str] = []
+        dirs: list[str] = []
+        file_dates: list[datetime] = []
 
         _get_fftp_files(self._ftp, path, files, dirs, file_dates)
         return files, dirs, file_dates

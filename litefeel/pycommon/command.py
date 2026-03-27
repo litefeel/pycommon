@@ -1,10 +1,10 @@
 import shlex
 import subprocess
 import sys
-from typing import Iterable, Tuple, Union
+from collections.abc import Iterable
 
 
-def call_binary(cmd: str) -> Tuple[bytes, bool]:
+def call_binary(cmd: str) -> tuple[bytes, bool]:
     if sys.platform == "win32":
         args = cmd
     else:
@@ -23,8 +23,8 @@ def call_binary(cmd: str) -> Tuple[bytes, bool]:
 
 # return (output, isOk)
 def call(
-    cmd: str, printOutput: bool = False, encoding: Union[None, str, Iterable[str]] = None
-) -> Tuple[str, bool]:
+    cmd: str, printOutput: bool = False, encoding: str | Iterable[str] | None = None
+) -> tuple[str, bool]:
     data, isOk = call_binary(cmd)
     if not isOk:
         return "", False

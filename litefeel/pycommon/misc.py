@@ -2,13 +2,14 @@
 
 
 from datetime import datetime
-from typing import Any, Callable, Iterable, List, Union
+from collections.abc import Callable, Iterable
+from typing import Any
 
 _all = all
 _any = any
 
 
-def all(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
+def all(iterable: Iterable, func: Callable[[Any], bool] | None = None) -> bool:
     """like buildin all(iterable), can accept an test function"""
     if func is None:
         return _all(iterable)
@@ -20,7 +21,7 @@ def all(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
     return True
 
 
-def any(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
+def any(iterable: Iterable, func: Callable[[Any], bool] | None = None) -> bool:
     """like buildin any(iterable), can accept an test function"""
     if func is None:
         return _any(iterable)
@@ -32,7 +33,7 @@ def any(iterable: Iterable, func: Callable[[Any], bool] = None) -> bool:
     return False
 
 
-def parse_datetime(timestr: Union[str, datetime]) -> datetime:
+def parse_datetime(timestr: str | datetime) -> datetime:
     """
     parse str to datatime
 
@@ -51,7 +52,7 @@ def parse_datetime(timestr: Union[str, datetime]) -> datetime:
 
     timearr = timestr.replace("-", " ").replace("/", " ").replace(":", " ").split(" ")
     assert len(timearr) == 5 or len(timearr) == 6
-    timeintarr: List[Any] = list([int(n) for n in timearr])
+    timeintarr: list[Any] = [int(n) for n in timearr]
     if len(timeintarr) == 5:
         timeintarr.append(0)
     return datetime(*timeintarr)

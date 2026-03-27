@@ -1,5 +1,3 @@
-from typing import Tuple
-
 from .math import round
 
 
@@ -13,7 +11,7 @@ class Color:
         self.a: float = a
 
     @property
-    def rgba(self) -> Tuple[float, float, float, float]:
+    def rgba(self) -> tuple[float, float, float, float]:
         return self.r, self.g, self.b, self.a
 
     @property
@@ -43,7 +41,7 @@ class Color32:
         self.a: int = round(a)
 
     @property
-    def rgba(self) -> Tuple[int, int, int, int]:
+    def rgba(self) -> tuple[int, int, int, int]:
         return self.r, self.g, self.b, self.a
 
     @property
@@ -69,17 +67,17 @@ def _hex(s: str) -> int:
     return int(s, 16)
 
 
-def _split3(s: str) -> Tuple[str, str, str]:
+def _split3(s: str) -> tuple[str, str, str]:
     per: int = len(s) // 3
     return s[0:per], s[per : per * 2], s[per * 2 :]
 
 
-def _split4(s: str) -> Tuple[str, str, str, str]:
+def _split4(s: str) -> tuple[str, str, str, str]:
     per: int = len(s) // 4
     return s[0:per], s[per : per * 2], s[per * 2 : per * 3], s[per * 3 :]
 
 
-def parse_hex_color(s: str) -> Tuple[int, int, int, int]:
+def parse_hex_color(s: str) -> tuple[int, int, int, int]:
     """Parse hex color strings in RGB/RGBA shorthand or full-length forms."""
 
     str_color: str = s[1:] if s.startswith("#") else s
