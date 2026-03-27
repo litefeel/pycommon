@@ -31,9 +31,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "http://github.com/litefeel/pycommon"
-Repository = "http://github.com/litefeel/pycommon.git"
-"Bug Tracker" = "http://github.com/litefeel/pycommon/issues"
+Homepage = "https://github.com/litefeel/pycommon"
+Repository = "https://github.com/litefeel/pycommon.git"
+"Bug Tracker" = "https://github.com/litefeel/pycommon/issues"
 
 
 [tool.black]
@@ -43,4 +43,3 @@ line-length = 100
 addopts = "-p no:cacheprovider"
 testpaths = ["tests"]
 norecursedirs = [".git", ".github", ".pytest_cache", "__pycache__", "pytest-cache-files-*"]
-asyncio_default_fixture_loop_scope = "function"

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-'version'
+"""version"""
 
 import importlib.metadata
 import tomllib
