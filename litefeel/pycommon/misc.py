@@ -1,6 +1,5 @@
 "some function for misc"
 
-
 from datetime import datetime
 from collections.abc import Callable, Iterable
 from typing import Any
@@ -46,9 +45,9 @@ def parse_datetime(timestr: str | datetime) -> datetime:
     if isinstance(timestr, datetime):
         return timestr
 
-    assert isinstance(
-        timestr, str
-    ), f"Type Error timestr must be str or datetime, timestr:{type(timestr)}"
+    assert isinstance(timestr, str), (
+        f"Type Error timestr must be str or datetime, timestr:{type(timestr)}"
+    )
 
     timearr = timestr.replace("-", " ").replace("/", " ").replace(":", " ").split(" ")
     assert len(timearr) == 5 or len(timearr) == 6

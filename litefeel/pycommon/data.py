@@ -11,6 +11,7 @@ def save_csv(filename, rows: list[list], header: list | None = None):
         for row in rows:
             writer.writerow(row)
 
+
 def read_xlsx(filename: str) -> list[list]:
     wb = openpyxl.load_workbook(filename)
     ws = wb.active
@@ -18,6 +19,7 @@ def read_xlsx(filename: str) -> list[list]:
     for row in ws.rows:
         rows.append([cell.value for cell in row])
     return rows
+
 
 def save_xlsx(
     filename: str,

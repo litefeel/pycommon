@@ -10,9 +10,10 @@ class TestIOMethods:
         fake_context.__enter__ = Mock(return_value=fake_file)
         fake_context.__exit__ = Mock(return_value=None)
 
-        with patch("litefeel.pycommon.io.makedirs") as makedirs, patch(
-            "builtins.open", return_value=fake_context
-        ) as open_mock:
+        with (
+            patch("litefeel.pycommon.io.makedirs") as makedirs,
+            patch("builtins.open", return_value=fake_context) as open_mock,
+        ):
             write_file("test.bin", b"aaaaa")
 
         makedirs.assert_called_once_with("test.bin", isfile=True)

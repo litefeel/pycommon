@@ -11,6 +11,8 @@ my python lib
 
 ```bash
 uv sync --group dev
+uv run ruff check litefeel tests
+uv run ruff format --check litefeel tests
 uv run pytest
 uv build
 ```

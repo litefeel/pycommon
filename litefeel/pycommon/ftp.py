@@ -39,7 +39,7 @@ def _makedirs(ftp: ftplib.FTP, path: str, remote_dirs: set[str]):
         try:
             ftp.cwd(dir)
             continue
-        except:
+        except ftplib.all_errors:
             ftp.mkd(dir)
             ftp.cwd(dir)
 
@@ -93,16 +93,14 @@ class FTP:
             for dir in dirs:
                 try:
                     self._ftp.mkd(dir)
-                except:
+                except ftplib.all_errors:
                     pass
 
             # 推送文件
             for file in files:
                 local_full_name = os.path.join(root, file)
                 local_relpath = os.path.relpath(local_full_name, local_path)
-                remote_file = os.path.join(remote_path, local_relpath).replace(
-                    "\\", "/"
-                )
+                remote_file = os.path.join(remote_path, local_relpath).replace("\\", "/")
                 if remote_file in remote_files:
                     continue
                 with open(local_full_name, "rb") as f:
@@ -117,6 +115,6 @@ class FTP:
             try:
                 self._ftp.cwd(dir)
                 continue
-            except:
+            except ftplib.all_errors:
                 self._ftp.mkd(dir)
                 self._ftp.cwd(dir)
