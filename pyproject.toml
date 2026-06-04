@@ -35,6 +35,12 @@ Homepage = "https://github.com/litefeel/pycommon"
 Repository = "https://github.com/litefeel/pycommon"
 "Bug Tracker" = "https://github.com/litefeel/pycommon/issues"
 
+[dependency-groups]
+dev = [
+  "black",
+  "flake8",
+  "pytest",
+]
 
 [tool.black]
 line-length = 100

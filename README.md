@@ -6,3 +6,11 @@
 
 # pycommon
 my python lib
+
+## Development
+
+```bash
+uv sync --group dev
+uv run pytest
+uv build
+```
