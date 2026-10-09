@@ -7,6 +7,8 @@
 # pycommon
 my python lib
 
+Requires Python 3.12 or newer.
+
 ## Development
 
 ```bash
